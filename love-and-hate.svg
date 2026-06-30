@@ -1,114 +1,56 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="840" height="420" viewBox="0 0 840 420">
   <defs>
-    <radialGradient id="softRedHalo" cx="50%" cy="18%" r="52%">
-      <stop offset="0%" stop-color="#d71920" stop-opacity="0.45"/>
-      <stop offset="35%" stop-color="#d71920" stop-opacity="0.25"/>
-      <stop offset="62%" stop-color="#d71920" stop-opacity="0.08"/>
+    <radialGradient id="redGlow" cx="50%" cy="18%" r="52%">
+      <stop offset="0%" stop-color="#d71920" stop-opacity="0.34"/>
+      <stop offset="32%" stop-color="#d71920" stop-opacity="0.24"/>
+      <stop offset="56%" stop-color="#d71920" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#d71920" stop-opacity="0"/>
     </radialGradient>
 
-    <radialGradient id="grainMaskGradient" cx="50%" cy="18%" r="58%">
+    <radialGradient id="haloMaskGradient" cx="50%" cy="18%" r="58%">
       <stop offset="0%" stop-color="white" stop-opacity="0"/>
-      <stop offset="28%" stop-color="white" stop-opacity="0.12"/>
-      <stop offset="48%" stop-color="white" stop-opacity="1"/>
-      <stop offset="72%" stop-color="white" stop-opacity="0.62"/>
+      <stop offset="32%" stop-color="white" stop-opacity="0.12"/>
+      <stop offset="52%" stop-color="white" stop-opacity="0.95"/>
+      <stop offset="78%" stop-color="white" stop-opacity="0.34"/>
       <stop offset="100%" stop-color="white" stop-opacity="0"/>
     </radialGradient>
 
-    <mask id="grainMask">
-      <rect width="840" height="420" fill="url(#grainMaskGradient)"/>
+    <mask id="haloMask">
+      <rect width="840" height="420" fill="url(#haloMaskGradient)"/>
     </mask>
 
-    <filter id="printGrain" x="-10%" y="-10%" width="120%" height="120%">
-      <feTurbulence type="turbulence" baseFrequency="0.19" numOctaves="1" seed="34" result="noise"/>
-      <feColorMatrix in="noise" type="matrix" result="contrast"
-        values="
-          4.2 0   0   0 -1.7
-          0   4.2 0   0 -1.7
-          0   0   4.2 0 -1.7
-          0   0   0   1  0"/>
-      <feComponentTransfer in="contrast" result="dots">
-        <feFuncR type="discrete" tableValues="0 0 0 1 1"/>
-        <feFuncG type="discrete" tableValues="0 0 0 1 1"/>
-        <feFuncB type="discrete" tableValues="0 0 0 1 1"/>
-        <feFuncA type="discrete" tableValues="0 0.18 0.42 0.72 1"/>
-      </feComponentTransfer>
-    </filter>
-
-    <filter id="finePaper" x="-10%" y="-10%" width="120%" height="120%">
-      <feTurbulence type="fractalNoise" baseFrequency="1.15" numOctaves="2" seed="9"/>
-      <feColorMatrix type="saturate" values="0"/>
+    <filter id="softGrain" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.62" numOctaves="3" seed="17" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0"/>
       <feComponentTransfer>
-        <feFuncA type="table" tableValues="0 0.08"/>
+        <feFuncA type="table" tableValues="0 0.2"/>
       </feComponentTransfer>
     </filter>
   </defs>
 
-  <!-- paper base -->
-  <rect width="840" height="420" fill="#f8f1e5"/>
+  <rect width="840" height="420" fill="#ffffff"/>
 
-  <!-- subtle paper noise across the whole card -->
-  <rect width="840" height="420" filter="url(#finePaper)" opacity="0.55"/>
-
-  <!-- red sun -->
-  <circle cx="420" cy="74" r="154" fill="#d71920">
-    <animate attributeName="r" values="153;157;153" dur="6s" repeatCount="indefinite"/>
+  <circle cx="420" cy="82" r="148" fill="#d71920">
+    <animate attributeName="r" values="147;150;147" dur="6.5s" repeatCount="indefinite"/>
   </circle>
 
-  <!-- red glow around the sun -->
-  <rect width="840" height="420" fill="url(#softRedHalo)" opacity="0.9"/>
+  <rect width="840" height="420" fill="url(#redGlow)" opacity="0.95"/>
 
-  <!-- print-like grain, strongest around sun edge -->
-  <rect width="840" height="420" fill="#d71920" filter="url(#printGrain)" mask="url(#grainMask)" opacity="0.85">
-    <animate attributeName="opacity" values="0.72;0.9;0.78;0.86;0.72" dur="4.2s" repeatCount="indefinite"/>
+  <rect width="840" height="420" fill="#d71920" filter="url(#softGrain)" mask="url(#haloMask)" opacity="0.9">
+    <animate attributeName="opacity" values="0.68;0.92;0.76;0.86;0.68" dur="4.8s" repeatCount="indefinite"/>
   </rect>
 
-  <!-- small dark ink flecks near the lower area -->
-  <g opacity="0.18" fill="#111111">
-    <circle cx="74" cy="312" r="1.2"/>
-    <circle cx="118" cy="352" r="0.9"/>
-    <circle cx="186" cy="326" r="1.1"/>
-    <circle cx="242" cy="370" r="0.8"/>
-    <circle cx="302" cy="318" r="1"/>
-    <circle cx="548" cy="344" r="0.9"/>
-    <circle cx="626" cy="312" r="1.2"/>
-    <circle cx="690" cy="364" r="0.8"/>
-    <circle cx="762" cy="330" r="1"/>
-  </g>
+  <text x="420" y="322"
+    text-anchor="middle"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="42"
+    font-weight="800"
+    letter-spacing="2"
+    fill="#111111">LOVE AND HATE</text>
 
-  <!-- typography -->
-  <g>
-    <animateTransform attributeName="transform" type="translate" values="0 0;0 -2;0 0" dur="5.8s" repeatCount="indefinite"/>
-
-    <text x="420" y="302"
-      text-anchor="middle"
-      font-family="Arial, Helvetica, sans-serif"
-      font-size="56"
-      font-weight="800"
-      letter-spacing="13"
-      fill="#111111">LOVE</text>
-
-    <text x="420" y="358"
-      text-anchor="middle"
-      font-family="Arial, Helvetica, sans-serif"
-      font-size="34"
-      font-weight="800"
-      letter-spacing="10"
-      fill="#111111">AND HATE</text>
-  </g>
-
-  <!-- frame -->
-  <rect x="20" y="20" width="800" height="380" rx="22"
+  <rect x="18" y="18" width="804" height="384" rx="24"
     fill="none"
     stroke="#111111"
-    stroke-opacity="0.34"
+    stroke-opacity="0.18"
     stroke-width="2"/>
-
-  <text x="780" y="384"
-    text-anchor="end"
-    font-family="Arial, Helvetica, sans-serif"
-    font-size="18"
-    letter-spacing="4"
-    fill="#111111"
-    opacity="0.55">01</text>
 </svg>
