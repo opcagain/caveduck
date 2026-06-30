@@ -1,62 +1,60 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="840" height="420" viewBox="0 0 840 420">
   <defs>
-    <radialGradient id="moonGlow" cx="50%" cy="0%" r="75%">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="38%" stop-color="#d7dde8"/>
-      <stop offset="72%" stop-color="#45506a"/>
-      <stop offset="100%" stop-color="#111827"/>
+    <radialGradient id="redHalo" cx="50%" cy="18%" r="48%">
+      <stop offset="0%" stop-color="#d71920" stop-opacity="0.55"/>
+      <stop offset="34%" stop-color="#d71920" stop-opacity="0.28"/>
+      <stop offset="58%" stop-color="#d71920" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#d71920" stop-opacity="0"/>
     </radialGradient>
 
-    <linearGradient id="bottomShade" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0.55"/>
-    </linearGradient>
+    <radialGradient id="grainMask" cx="50%" cy="18%" r="55%">
+      <stop offset="0%" stop-color="white" stop-opacity="0"/>
+      <stop offset="34%" stop-color="white" stop-opacity="0.25"/>
+      <stop offset="58%" stop-color="white" stop-opacity="1"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
 
     <filter id="grain">
-      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="14"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="4" seed="21"/>
       <feColorMatrix type="saturate" values="0"/>
       <feComponentTransfer>
-        <feFuncA type="table" tableValues="0 0.16"/>
+        <feFuncA type="table" tableValues="0 0.28"/>
       </feComponentTransfer>
     </filter>
+
+    <mask id="haloGrainMask">
+      <rect width="840" height="420" fill="url(#grainMask)"/>
+    </mask>
   </defs>
 
-  <rect width="840" height="420" fill="#111827"/>
+  <rect width="840" height="420" fill="#f7f1e6"/>
 
-  <circle cx="420" cy="-44" r="328" fill="url(#moonGlow)" opacity="0.96">
-    <animate attributeName="r" values="318;336;318" dur="6s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0.9;1;0.9" dur="5s" repeatCount="indefinite"/>
+  <circle cx="420" cy="78" r="152" fill="#d71920">
+    <animate attributeName="r" values="150;154;150" dur="5.5s" repeatCount="indefinite"/>
   </circle>
 
-  <rect width="840" height="420" fill="url(#bottomShade)"/>
-  <rect width="840" height="420" filter="url(#grain)" opacity="0.55">
-    <animate attributeName="opacity" values="0.38;0.58;0.42;0.55;0.38" dur="3.6s" repeatCount="indefinite"/>
+  <rect width="840" height="420" fill="url(#redHalo)"/>
+
+  <rect width="840" height="420" filter="url(#grain)" mask="url(#haloGrainMask)" opacity="0.75">
+    <animate attributeName="opacity" values="0.48;0.78;0.55;0.75;0.48" dur="3.8s" repeatCount="indefinite"/>
   </rect>
 
-  <g>
-    <animateTransform attributeName="transform" type="translate" values="0 0;0 -5;0 0" dur="4.5s" repeatCount="indefinite"/>
+  <rect x="20" y="20" width="800" height="380" rx="22"
+        fill="none" stroke="#111111" stroke-opacity="0.32" stroke-width="2"/>
 
-    <text x="420" y="202" text-anchor="middle"
-      font-family="Arial, Helvetica, sans-serif"
-      font-size="68" font-weight="800" letter-spacing="12"
-      fill="#ffffff">LOVE</text>
+  <text x="420" y="300"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="54"
+        font-weight="800"
+        letter-spacing="12"
+        fill="#111111">LOVE</text>
 
-    <text x="420" y="270" text-anchor="middle"
-      font-family="Arial, Helvetica, sans-serif"
-      font-size="40" font-weight="700" letter-spacing="9"
-      fill="#dbe4ef">AND HATE</text>
-  </g>
-
-  <line x1="92" y1="326" x2="748" y2="326" stroke="#ffffff" stroke-opacity="0.55" stroke-width="2">
-    <animate attributeName="x1" values="92;150;92" dur="5s" repeatCount="indefinite"/>
-    <animate attributeName="x2" values="748;690;748" dur="5s" repeatCount="indefinite"/>
-  </line>
-
-  <text x="748" y="358" text-anchor="end"
-    font-family="Arial, Helvetica, sans-serif"
-    font-size="20" letter-spacing="4"
-    fill="#ffffff" opacity="0.72">01</text>
-
-  <rect x="18" y="18" width="804" height="384" rx="24"
-    fill="none" stroke="#ffffff" stroke-opacity="0.48" stroke-width="2"/>
+  <text x="420" y="356"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="34"
+        font-weight="800"
+        letter-spacing="9"
+        fill="#111111">AND HATE</text>
 </svg>
